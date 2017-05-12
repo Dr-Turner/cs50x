@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ res.name }} quote
+{% endblock %}
+
+{% block main %}
+    <div>
+        <h2><i>{{ res.symbol }}</i></h2>
+        <h2>{{ res.name }}</h2>
+        <h2 style="color: #F00">{{ res.price }}</h2>
+    </div>
+{% endblock %}

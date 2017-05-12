@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Funds
+{% endblock %}
+
+{% block main %}
+    <h2>{{ user }}</h2>
+    <h2>Current funds: {{ "${:,.2f}".format(cash) }} </h2>
+    <form action="{{ url_for('add') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                <span class="input-group-addon">$</span>
+                <input autocomplete="off" autofocus class="form-control" name="funds" placeholder="Funds" type="number"/>
+                <span class="input-group-addon">.00</span>    
+            </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-success" type="submit">Add!</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

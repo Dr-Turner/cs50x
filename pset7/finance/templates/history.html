@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Stock</th>
+        <th>Quantity</th>
+        <th>Unit Value</th>
+        <th>Total Value</th>
+        <th>Time</th>
+        <th>Transaction</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    {% for row in rows %}
+      {% if row.type == "BUY" %}
+      <tr class="success">
+      {% elif row.type == "SELL" %}
+      <tr class="danger">
+      {% endif %}
+        <th scope="row">
+          {% filter upper %}
+          {{ row.symbol }}
+          {% endfilter %}
+        </th>
+        <td>{{ row.quantity }}</td>
+        <td>{{ "${:,.3f}".format(row.unit_cost) }}</td>
+        <td>{{ "${:,.2f}".format(row.unit_cost * row.quantity) }}</td>
+        <td>{{ row.time }}</td>
+        <td>{{ row.type }}</td>
+      </tr>  
+    {% endfor %}
+  
+    </tbody>
+  </table>
+  
+{% endblock %}

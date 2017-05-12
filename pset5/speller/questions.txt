@@ -1,0 +1,23 @@
+0. What is pneumonoultramicroscopicsilicovolcanoconiosis?
+an invented long word said to mean a lung disease caused by inhaling very fine ash and sand dust.
+
+1. According to its man page, what does getrusage do?
+Returns resource usage measures
+
+2. Per that same man page, how many members are in a variable of type struct rusage?
+16
+
+3. Why do you think we pass before and after by reference (instead of by value) to calculate, even though we’re not changing their contents?
+Using references rather than values is more efficient and as calculate is measuring effficency, to pass in the values could skew the results.
+
+4. Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, convince us that you indeed understand how that function’s for loop works.
+main gets each character from the file until the End of File (EOF) character which signifies the end of the file.  
+If the character is a letter or an apostrophe (and the word is not too long to be considered a word) that letter is added to the a word array.
+If the character is other than those, the word array is prepended with a end of string character '\0' and sent to check function to see if the word is mispelled. it is printed and counted if so.
+Words with digits are ignored and the file is closed upon being finished with.
+
+5. Why do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with a format string like "%s" to read whole words at a time? Put another way, what problems might arise by relying on fscanf alone?
+fgetc allows us to keep track of how many characters we're reading in from the file, allowing us to terminate strings longer than can reasonably be expected. This prevents overflow.
+
+6. Why do you think we declared the parameters for check and load as const (which means "constant")?
+For stablility of code. Those values shouldn't change inside the function and errors should be thrown if they are changed accidentally.

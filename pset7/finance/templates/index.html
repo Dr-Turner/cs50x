@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+  <h2>{{ user }}</h2>
+  <h3>Funds: {{ funds }}</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Stock</th>
+        <th>Quantity</th>
+        <th>Unit Value</th>
+        <th>Total Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    {% for row in rows %}
+      <tr>
+        <th scope="row">
+          {% filter upper %}
+          {{ row.symbol }}
+          {% endfilter %}
+        </th>
+        <td>{{ row.quantity }}</td>
+        <td>{{ "${:,.3f}".format(row.current_price) }}</td>
+        <td>{{ "${:,.2f}".format(row.current_price * row.quantity) }}</td>
+      </tr>  
+    {% endfor %}
+  
+    </tbody>
+  </table>
+  
+  <h3>Total Assets: <span style="color: #0A0;">{{ total_assets }}</span></h3>
+  
+{% endblock %}
